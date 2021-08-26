@@ -69,19 +69,25 @@ fn main() {
     let vertex_data = vec![
         // bottom
         Vertex::new([-1, -1, -1], [0, 0]),
-        Vertex::new([-1,  1, -1], [0, 0]),
-        Vertex::new([ 1,  1, -1], [0, 0]),
+        Vertex::new([-1, -1,  1], [0, 0]),
+        Vertex::new([ 1, -1,  1], [0, 0]),
         Vertex::new([ 1, -1, -1], [0, 0]),
 
         // top
-        Vertex::new([-1, -1,  1], [0, 0]),
+        Vertex::new([-1,  1, -1], [0, 0]),
         Vertex::new([-1,  1,  1], [0, 0]),
         Vertex::new([ 1,  1,  1], [0, 0]),
-        Vertex::new([ 1, -1,  1], [0, 0]),
+        Vertex::new([ 1,  1, -1], [0, 0]),
 
         // roof
-        Vertex::new([ 0,  1,  2], [1, 1]),
-        Vertex::new([ 0, -1,  2], [1, 1]),
+        Vertex::new([ 0,  2,  1], [1, 1]),
+        Vertex::new([ 0,  2, -1], [1, 1]),
+
+        // floor
+        Vertex::new([  1, -1,  20], [1, 0]),
+        Vertex::new([ 20, -1,  -1], [1, 0]),
+        Vertex::new([ -1, -1, -20], [1, 0]),
+        Vertex::new([-20, -1,   1], [1, 0]),
     ];
 
     // Creates triangles of the vertices. Great example:
@@ -91,11 +97,16 @@ fn main() {
         5, 8, 9,    5, 4, 9, // roof left
         7, 6, 9,    6, 8, 9, // roof right
         4, 7, 9,    5, 8, 6, // roof sides
-        4, 5, 6,    4, 6, 7, // bottom
+
         2, 6, 7,    2, 7, 3, // right
         1, 5, 4,    4, 1, 0, // left
         0, 3, 7,    4, 7, 0, // front
         1, 2, 6,    1, 5, 6, // back
+
+        10, 3, 11, // floor top right
+        12, 11, 0, // floor bottom right
+        13, 12, 1, // floor bottom left
+        13, 10, 2, // floor top left
     ];
 
     // A Slice dictates in which and in what order vertices get processed.
@@ -103,8 +114,8 @@ fn main() {
         factory.create_vertex_buffer_with_slice(&vertex_data, index_data);
 
     let texels = [
-        [0x00, 0x00, 0x00, 0x00],
-        [0x00, 0x00, 0x00, 0x00],
+        [0xdb, 0x45, 0x00, 0x00],
+        [0x45, 0x75, 0x00, 0x3b],
         [0x00, 0x00, 0x00, 0x00],
         [0x00, 0xff, 0x00, 0x00],
     ];

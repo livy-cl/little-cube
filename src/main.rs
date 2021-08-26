@@ -84,10 +84,10 @@ fn main() {
         Vertex::new([ 0,  2, -1], [1, 1]),
 
         // floor
-        Vertex::new([  1, -1,  20], [1, 0]),
-        Vertex::new([ 20, -1,  -1], [1, 0]),
-        Vertex::new([ -1, -1, -20], [1, 0]),
-        Vertex::new([-20, -1,   1], [1, 0]),
+        Vertex::new([-20, -1,  20], [1, 0]),
+        Vertex::new([ 20, -1,  20], [1, 0]),
+        Vertex::new([ 20, -1, -20], [1, 0]),
+        Vertex::new([-20, -1, -20], [1, 0]),
     ];
 
     // Creates triangles of the vertices. Great example:
@@ -103,10 +103,7 @@ fn main() {
         0, 3, 7,    4, 7, 0, // front
         1, 2, 6,    1, 5, 6, // back
 
-        10, 3, 11, // floor top right
-        12, 11, 0, // floor bottom right
-        13, 12, 1, // floor bottom left
-        13, 10, 2, // floor top left
+        10, 13, 12,     10, 11, 12, // floor
     ];
 
     // A Slice dictates in which and in what order vertices get processed.

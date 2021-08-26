@@ -65,48 +65,29 @@ fn main() {
     // GL resource factory
     let ref mut factory = window.factory.clone();
 
+    // 8 corners of the cube
     let vertex_data = vec![
-        //top (0, 0, 1)
-        Vertex::new([-1, -1,  1], [0, 0]),
-        Vertex::new([ 1, -1,  1], [1, 0]),
-        Vertex::new([ 1,  1,  1], [1, 1]),
-        Vertex::new([-1,  1,  1], [0, 1]),
-        //bottom (0, 0, -1)
-        Vertex::new([ 1,  1, -1], [0, 0]),
+        // cube
+        Vertex::new([-1, -1, -1], [0, 0]),
         Vertex::new([-1,  1, -1], [1, 0]),
-        Vertex::new([-1, -1, -1], [1, 1]),
+        Vertex::new([ 1,  1, -1], [1, 1]),
         Vertex::new([ 1, -1, -1], [0, 1]),
-        //right (1, 0, 0)
-        Vertex::new([ 1, -1, -1], [0, 0]),
-        Vertex::new([ 1,  1, -1], [1, 0]),
+        Vertex::new([-1, -1,  1], [0, 0]),
+        Vertex::new([-1,  1,  1], [1, 0]),
         Vertex::new([ 1,  1,  1], [1, 1]),
         Vertex::new([ 1, -1,  1], [0, 1]),
-        //left (-1, 0, 0)
-        Vertex::new([-1,  1,  1], [0, 0]),
-        Vertex::new([-1, -1,  1], [1, 0]),
-        Vertex::new([-1, -1, -1], [1, 1]),
-        Vertex::new([-1,  1, -1], [0, 1]),
-        //front (0, 1, 0)
-        Vertex::new([-1,  1, -1], [0, 0]),
-        Vertex::new([ 1,  1, -1], [1, 0]),
-        Vertex::new([ 1,  1,  1], [1, 1]),
-        Vertex::new([-1,  1,  1], [0, 1]),
-        //back (0, -1, 0)
-        Vertex::new([ 1, -1,  1], [0, 0]),
-        Vertex::new([-1, -1,  1], [1, 0]),
-        Vertex::new([-1, -1, -1], [1, 1]),
-        Vertex::new([ 1, -1, -1], [0, 1]),
     ];
 
     // Creates triangles of the vertices. Great example:
     // https://gamedev.stackexchange.com/questions/68838/what-is-the-purpose-of-indices-in-3d-rendering
     let index_data: &[u16] = &[
-        0,   1,  2,      2,  3,  0, // top
-        4,   6,  5,      6,  4,  7, // bottom
-        8,   9, 10,     10, 11,  8, // right
-        12, 14, 13,     14, 12, 15, // left
-        16, 18, 17,     18, 16, 19, // front
-        20, 21, 22,     22, 23, 20, // back
+        // cube
+        0, 1, 2,    0, 2, 3, // top
+        4, 5, 6,    4, 6, 7, // bottom
+        2, 6, 7,    2, 7, 3, // right
+        1, 5, 4,    4, 1, 0, // left
+        0, 3, 7,    4, 7, 0, // front
+        1, 2, 6,    1, 5, 6, // back
     ];
 
     // A Slice dictates in which and in what order vertices get processed.
@@ -117,7 +98,7 @@ fn main() {
         [0xff, 0xff, 0xff, 0x00],
         [0xff, 0x00, 0x00, 0x00],
         [0x00, 0xff, 0x00, 0x00],
-        [0x00, 0x00, 0xff, 0x00]
+        [0x00, 0x00, 0xff, 0x00],
     ];
     let (_, texture_view) = factory.create_texture_immutable::<gfx::format::Rgba8>(
         gfx::texture::Kind::D2(2, 2, gfx::texture::AaMode::Single),

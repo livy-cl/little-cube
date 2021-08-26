@@ -1,6 +1,8 @@
 [package]
 name = "little-cube"
 version = "0.1.0"
+authors = ["livy <liv.cl@outlook.com>"]
+keywords = []
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

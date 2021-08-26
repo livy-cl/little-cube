@@ -67,22 +67,30 @@ fn main() {
 
     // 8 corners of the cube
     let vertex_data = vec![
-        // cube
+        // bottom
         Vertex::new([-1, -1, -1], [0, 0]),
         Vertex::new([-1,  1, -1], [1, 0]),
         Vertex::new([ 1,  1, -1], [1, 1]),
         Vertex::new([ 1, -1, -1], [0, 1]),
+
+        // top
         Vertex::new([-1, -1,  1], [0, 0]),
         Vertex::new([-1,  1,  1], [1, 0]),
         Vertex::new([ 1,  1,  1], [1, 1]),
         Vertex::new([ 1, -1,  1], [0, 1]),
+
+        // roof
+        Vertex::new([ 0,  1,  2], [0, 1]),
+        Vertex::new([ 0, -1,  2], [0, 1]),
     ];
 
     // Creates triangles of the vertices. Great example:
     // https://gamedev.stackexchange.com/questions/68838/what-is-the-purpose-of-indices-in-3d-rendering
     let index_data: &[u16] = &[
         // cube
-        0, 1, 2,    0, 2, 3, // top
+        5, 8, 9,    5, 4, 9, // roof left
+        7, 6, 9,    6, 8, 9, // roof right
+        4, 7, 9,    5, 8, 6, // roof sides
         4, 5, 6,    4, 6, 7, // bottom
         2, 6, 7,    2, 7, 3, // right
         1, 5, 4,    4, 1, 0, // left

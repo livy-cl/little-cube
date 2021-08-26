@@ -69,19 +69,19 @@ fn main() {
     let vertex_data = vec![
         // bottom
         Vertex::new([-1, -1, -1], [0, 0]),
-        Vertex::new([-1,  1, -1], [1, 0]),
-        Vertex::new([ 1,  1, -1], [1, 1]),
-        Vertex::new([ 1, -1, -1], [0, 1]),
+        Vertex::new([-1,  1, -1], [0, 0]),
+        Vertex::new([ 1,  1, -1], [0, 0]),
+        Vertex::new([ 1, -1, -1], [0, 0]),
 
         // top
         Vertex::new([-1, -1,  1], [0, 0]),
-        Vertex::new([-1,  1,  1], [1, 0]),
-        Vertex::new([ 1,  1,  1], [1, 1]),
-        Vertex::new([ 1, -1,  1], [0, 1]),
+        Vertex::new([-1,  1,  1], [0, 0]),
+        Vertex::new([ 1,  1,  1], [0, 0]),
+        Vertex::new([ 1, -1,  1], [0, 0]),
 
         // roof
-        Vertex::new([ 0,  1,  2], [0, 1]),
-        Vertex::new([ 0, -1,  2], [0, 1]),
+        Vertex::new([ 0,  1,  2], [1, 1]),
+        Vertex::new([ 0, -1,  2], [1, 1]),
     ];
 
     // Creates triangles of the vertices. Great example:
@@ -103,10 +103,10 @@ fn main() {
         factory.create_vertex_buffer_with_slice(&vertex_data, index_data);
 
     let texels = [
-        [0xff, 0xff, 0xff, 0x00],
-        [0xff, 0x00, 0x00, 0x00],
+        [0x00, 0x00, 0x00, 0x00],
+        [0x00, 0x00, 0x00, 0x00],
+        [0x00, 0x00, 0x00, 0x00],
         [0x00, 0xff, 0x00, 0x00],
-        [0x00, 0x00, 0xff, 0x00],
     ];
     let (_, texture_view) = factory.create_texture_immutable::<gfx::format::Rgba8>(
         gfx::texture::Kind::D2(2, 2, gfx::texture::AaMode::Single),
